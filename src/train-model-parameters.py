@@ -12,6 +12,7 @@ from sklearn.metrics import roc_curve
 import matplotlib.pyplot as plt
 
 def main(args):
+    log_section("START TRAINING JOB")
     # read data
     df = get_data(args.training_data)
 
@@ -35,7 +36,7 @@ def get_data(path):
     if os.path.isdir(path):
         csv_files = glob.glob(os.path.join(path, "*.csv"))
         if not csv_files:
-            raise RuntimeError(f"No CSV files found in provided data path: {path}")
+            raise RuntimeError(f"No CSV files are found in provided data path: {path}")
         df = pd.concat((pd.read_csv(f) for f in csv_files), ignore_index=True)
     else:
         df = pd.read_csv(path)
